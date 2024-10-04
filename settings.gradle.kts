@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "HappyMoonDay"
 include(":app")
 include(":feature")
+include(":feature:home")
