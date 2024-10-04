@@ -40,4 +40,5 @@ dependencies {
     implementation(libs.material)
     implementation(libs.dagger.hilt)
     implementation(libs.dagger.hilt.compiler)
+    implementation(libs.bundles.retrofit)
 }
