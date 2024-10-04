@@ -23,3 +23,5 @@ rootProject.name = "HappyMoonDay"
 include(":app")
 include(":feature")
 include(":feature:home")
+include(":core")
+include(":core:network")
