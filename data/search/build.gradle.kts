@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.korea.data"
+    namespace = "com.korea.search"
     compileSdk = 34
 
     defaultConfig {
@@ -33,5 +33,5 @@ android {
 }
 
 dependencies {
-
+    
 }
