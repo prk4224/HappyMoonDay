@@ -4,46 +4,46 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchDTO(
     @SerializedName("SemaPsgudInfoKorInfo")
-    val semaPsgudInfoKorInfo : SemaPsgudInfoKorInfo,
+    val semaPsgudInfoKorInfo : SemaPsgudInfoKorInfo?,
 ) {
     data class SemaPsgudInfoKorInfo(
         @SerializedName("list_total_count")
-        val listTotalCount: Int,
+        val listTotalCount: Int?,
         @SerializedName("RESULT")
-        val result: Result,
+        val result: Result?,
         @SerializedName("row")
-        val row: Row
+        val rows: List<Row>?,
     )
 
     data class Result(
         @SerializedName("CODE")
-        val code: String,
+        val code: String?,
         @SerializedName("MESSAGE")
-        val message: String,
+        val message: String?,
     )
 
     data class Row(
         @SerializedName("prdct_cl_nm")
-        val productClassName: String,
+        val productClassName: String?,
         @SerializedName("manage_no_year")
-        val manageNoYear: String,
+        val manageNoYear: String?,
         @SerializedName("prdct_nm_korean")
-        val productNameKorean: String,
+        val productNameKorean: String?,
         @SerializedName("prdct_nm_eng")
-        val productNameEnglish: String,
+        val productNameEnglish: String?,
         @SerializedName("prdct_stndrd")
-        val productStandard: String,
+        val productStandard: String?,
         @SerializedName("mnfct_year")
-        val manuFactureYear: String,
+        val manuFactureYear: String?,
         @SerializedName("matrl_technic")
-        val materialTechnic: String,
+        val materialTechnic: String?,
         @SerializedName("prdct_detail")
-        val productDetail: String,
+        val productDetail: String?,
         @SerializedName("writr_nm")
-        val writerName: String,
+        val writerName: String?,
         @SerializedName("main_image")
-        val mainImage: String,
+        val mainImage: String?,
         @SerializedName("thumb_image")
-        val thumbImage: String,
+        val thumbImage: String?,
     )
 }

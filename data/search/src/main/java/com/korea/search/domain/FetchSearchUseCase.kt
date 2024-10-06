@@ -1,13 +1,12 @@
 package com.korea.search.domain
 
-import com.korea.network.model.SearchDTO
-import retrofit2.Response
+import com.korea.search.domain.model.Artwork
 import javax.inject.Inject
 
 class FetchSearchUseCase @Inject constructor(
     private val searchRepository: SearchRepository
 ) {
-    operator fun invoke() : Response<SearchDTO> {
+    suspend operator fun invoke() : Result<List<Artwork>> {
         return searchRepository.fetch()
     }
 }

@@ -1,8 +1,7 @@
 package com.korea.search.domain
 
-import com.korea.network.model.SearchDTO
-import retrofit2.Response
+import com.korea.search.domain.model.Artwork
 
 interface SearchRepository {
-    fun fetch(): Response<SearchDTO>
+    suspend fun fetch(): Result<List<Artwork>>
 }

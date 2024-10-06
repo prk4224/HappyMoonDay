@@ -1,5 +1,6 @@
 package com.korea.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,16 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.textHome.setOnClickListener {
+            val activity = activity ?: return@setOnClickListener
+            val intent = Intent()
+            intent.setClassName(activity, "com.korea.search.ui.SearchActivity")
+            activity.startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {
