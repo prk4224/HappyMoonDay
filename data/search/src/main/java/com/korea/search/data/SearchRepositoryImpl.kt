@@ -4,20 +4,28 @@ import com.korea.network.model.SearchDTO
 import com.korea.search.common.ApiUtils.safeApiCall
 import com.korea.search.domain.SearchRepository
 import com.korea.search.domain.model.Artwork
+import com.korea.search.domain.model.SearchEntity
+import com.korea.search.domain.model.SearchParams
 import javax.inject.Inject
 
 class SearchRepositoryImpl @Inject constructor(
     private val searchDataSource: SearchDataSource,
 ) : SearchRepository {
-    override suspend fun fetch(): Result<List<Artwork>> {
+    override suspend fun fetch(params: SearchParams): Result<SearchEntity> {
         return safeApiCall(
             apiCall = {
-                searchDataSource.fetch()
+                searchDataSource.fetch(params)
             },
             convert = { dto ->
-                dto.semaPsgudInfoKorInfo?.rows?.map { row ->
+                val artworks = dto.semaPsgudInfoKorInfo?.rows?.map { row ->
                     row.convertToArtwork()
                 } ?: listOf()
+                val totalCount = dto.semaPsgudInfoKorInfo?.listTotalCount ?: 0
+
+                SearchEntity(
+                    totalCount = totalCount,
+                    artworks = artworks
+                )
             }
         )
     }

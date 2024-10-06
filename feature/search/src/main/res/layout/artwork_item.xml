@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp">
+
+    <ImageView
+        android:id="@+id/main_image_iv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/main_image_iv"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="꿈은 이루어진다" />
+
+    <TextView
+        android:id="@+id/writer_manufacture_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/class_name_tv"
+        app:layout_constraintStart_toEndOf="@+id/main_image_iv"
+        app:layout_constraintTop_toBottomOf="@+id/title_tv"
+        tools:text="홍연화 (2023)" />
+
+    <TextView
+        android:id="@+id/class_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/main_image_iv"
+        tools:text="드로잉" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
