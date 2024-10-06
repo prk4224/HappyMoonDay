@@ -2,6 +2,7 @@ package com.korea.search.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.korea.search.dialog.model.ManuFactureYearSort
 import com.korea.search.domain.FetchSearchUseCase
 import com.korea.search.domain.model.Artwork
 import com.korea.search.domain.model.SearchParams
@@ -23,6 +24,9 @@ class SearchViewModel @Inject constructor(
     private val _artworks = MutableStateFlow<List<Artwork>>(listOf())
     val artworks = _artworks.asStateFlow()
 
+    private val _selectedManuFactureYear = MutableStateFlow(SORT_BY_YEAR_ASC)
+    val selectedManuFactureYear = _selectedManuFactureYear.asStateFlow()
+
     private var totalCount = 0
     private var searchKeyword = ""
     private var startIndex = 0
@@ -36,7 +40,7 @@ class SearchViewModel @Inject constructor(
             val params = SearchParams(
                 startIndex = startIndex,
                 endIndex = startIndex + PAGE_SIZE,
-                productClassName = "조각",
+                productClassName = "",
                 manufactureYear = null,
                 productNameKorean = keyword,
                 productNameEnglish = null
@@ -47,7 +51,7 @@ class SearchViewModel @Inject constructor(
                     if (item.totalCount == 0) {
                         _uiState.value = SearchUiState.Empty
                     } else {
-                        _artworks.value = item.artworks
+                        updateArtworks(item.artworks)
                         startIndex += PAGE_SIZE + 1
                         totalCount = item.totalCount
                         _uiState.value = SearchUiState.Success
@@ -81,7 +85,39 @@ class SearchViewModel @Inject constructor(
         }
     }
 
+    private fun updateArtworks(artworks: List<Artwork>) {
+        if (selectedManuFactureYear.value == SORT_BY_YEAR_ASC) {
+            _artworks.value = artworks.sortedBy {
+                it.manuFactureYear
+            }
+        } else {
+            _artworks.value = artworks.sortedByDescending {
+                it.manuFactureYear
+            }
+        }
+    }
+
+    fun makeManuFactureYearList(): List<ManuFactureYearSort> {
+        return listOf(
+            ManuFactureYearSort(
+                title = SORT_BY_YEAR_ASC,
+                isSelected = selectedManuFactureYear.value == SORT_BY_YEAR_ASC
+            ),
+            ManuFactureYearSort(
+                title = SORT_BY_YEAR_DESC,
+                isSelected = selectedManuFactureYear.value == SORT_BY_YEAR_DESC
+            )
+        )
+    }
+
+    fun updateManuFactureYearSort(manuFactureYearSort: ManuFactureYearSort) {
+        fetch(searchKeyword)
+        _selectedManuFactureYear.value = manuFactureYearSort.title
+    }
+
     companion object {
-        const val PAGE_SIZE = 100
+        const val PAGE_SIZE = 20
+        const val SORT_BY_YEAR_ASC = "제작년도 오름차순"
+        const val SORT_BY_YEAR_DESC = "제작년도 내림차순"
     }
 }

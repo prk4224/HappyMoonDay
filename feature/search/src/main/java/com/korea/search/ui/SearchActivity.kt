@@ -1,6 +1,8 @@
 package com.korea.search.ui
 
+import android.content.Context
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.korea.search.R
 import com.korea.search.databinding.ActivitySearchBinding
+import com.korea.search.dialog.BottomSheetDialog
 import com.korea.search.state.SearchUiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -23,6 +26,7 @@ class SearchActivity : AppCompatActivity() {
     private val searchAdapter: SearchAdapter by lazy {
         SearchAdapter()
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,13 +42,20 @@ class SearchActivity : AppCompatActivity() {
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.artworks.collect {
-                        searchAdapter.submitList(it)
+                    viewModel.artworks.collect { artwork ->
+                        searchAdapter.submitList(artwork)
                     }
                 }
                 launch {
-                    viewModel.uiState.collect {
-                        updateUIBasedOnState(it)
+                    viewModel.uiState.collect { uiState ->
+                        updateUIBasedOnState(uiState)
+                    }
+                }
+
+                launch {
+                    viewModel.selectedManuFactureYear.collect { manuFactureYear ->
+                        binding.filterManufactureYearTv.text = manuFactureYear
+                        binding.artworksRv.scrollToPosition(0)
                     }
                 }
             }
@@ -108,13 +119,17 @@ class SearchActivity : AppCompatActivity() {
         return position == point
     }
 
-    private fun setupClickListeners() {
-        binding.searchTv.setOnClickListener {
+    private fun setupClickListeners() = with(binding) {
+        searchTv.setOnClickListener {
             onSearchClick()
         }
 
-        binding.backIv.setOnClickListener {
+        backIv.setOnClickListener {
             onBackClick()
+        }
+
+        filterManufactureYearTv.setOnClickListener {
+            showBottomSheetDialog()
         }
     }
 
@@ -122,10 +137,29 @@ class SearchActivity : AppCompatActivity() {
         val keyword = binding.searchEt.text
         if (keyword.isEmpty()) return
         viewModel.fetch(keyword.toString())
+        hideKeyboard()
     }
 
     private fun onBackClick() {
         finish()
+    }
+
+    private fun showBottomSheetDialog() {
+        BottomSheetDialog(
+            manuFactureYears = viewModel.makeManuFactureYearList(),
+            onClick = { manuFactureYearSort ->
+                viewModel.updateManuFactureYearSort(manuFactureYearSort)
+            }
+        ).show(supportFragmentManager, "")
+    }
+
+    private fun hideKeyboard() {
+        val inputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+            currentFocus?.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
     }
 
     companion object {

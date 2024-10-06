@@ -42,6 +42,18 @@
         app:layout_constraintStart_toStartOf="@+id/search_et"
         app:layout_constraintTop_toTopOf="@+id/search_et" />
 
+    <TextView
+        android:id="@+id/filter_manufacture_year_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_stroke_1dp_circle"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="@+id/search_et"
+        app:layout_constraintTop_toBottomOf="@+id/search_et"
+        tools:text="제작년도 오름차순" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/artworks_rv"
         android:layout_width="0dp"
@@ -52,7 +64,7 @@
         app:layout_constraintBottom_toTopOf="@+id/search_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_et" />
+        app:layout_constraintTop_toBottomOf="@+id/filter_manufacture_year_tv" />
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/progress_bar"
@@ -63,7 +75,7 @@
         app:layout_constraintBottom_toTopOf="@+id/search_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_et" />
+        app:layout_constraintTop_toBottomOf="@+id/filter_manufacture_year_tv" />
 
     <TextView
         android:id="@+id/empty_title_tv"
@@ -74,7 +86,7 @@
         app:layout_constraintBottom_toTopOf="@+id/search_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_et"
+        app:layout_constraintTop_toBottomOf="@+id/filter_manufacture_year_tv"
         tools:text="검색 결과가 없어요." />
 
     <TextView
