@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -33,5 +34,8 @@ android {
 }
 
 dependencies {
-    
+    implementation(project(":core:network"))
+    implementation(libs.dagger.hilt)
+    implementation(libs.dagger.hilt.compiler)
+    implementation(libs.bundles.retrofit)
 }
