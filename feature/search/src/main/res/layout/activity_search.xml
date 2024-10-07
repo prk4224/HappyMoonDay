@@ -48,7 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:background="@drawable/bg_stroke_1dp_circle"
-        android:padding="8dp"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
         app:layout_constraintStart_toStartOf="@+id/search_et"
         app:layout_constraintTop_toBottomOf="@+id/search_et"
         tools:text="제작년도 오름차순" />

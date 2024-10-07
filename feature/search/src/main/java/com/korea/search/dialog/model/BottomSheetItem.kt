@@ -1,6 +1,6 @@
 package com.korea.search.dialog.model
 
-data class ManuFactureYearSort(
+data class BottomSheetItem(
     val title: String,
     val isSelected: Boolean,
 )

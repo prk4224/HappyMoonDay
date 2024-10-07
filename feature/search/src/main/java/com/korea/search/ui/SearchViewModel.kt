@@ -2,7 +2,7 @@ package com.korea.search.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.korea.search.dialog.model.ManuFactureYearSort
+import com.korea.search.dialog.model.BottomSheetItem
 import com.korea.search.domain.FetchSearchUseCase
 import com.korea.search.domain.model.Artwork
 import com.korea.search.domain.model.SearchParams
@@ -97,26 +97,26 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun makeManuFactureYearList(): List<ManuFactureYearSort> {
+    fun makeManuFactureYearList(): List<BottomSheetItem> {
         return listOf(
-            ManuFactureYearSort(
+            BottomSheetItem(
                 title = SORT_BY_YEAR_ASC,
                 isSelected = selectedManuFactureYear.value == SORT_BY_YEAR_ASC
             ),
-            ManuFactureYearSort(
+            BottomSheetItem(
                 title = SORT_BY_YEAR_DESC,
                 isSelected = selectedManuFactureYear.value == SORT_BY_YEAR_DESC
             )
         )
     }
 
-    fun updateManuFactureYearSort(manuFactureYearSort: ManuFactureYearSort) {
+    fun updateManuFactureYearSort(bottomSheetItem: BottomSheetItem) {
         fetch(searchKeyword)
-        _selectedManuFactureYear.value = manuFactureYearSort.title
+        _selectedManuFactureYear.value = bottomSheetItem.title
     }
 
     companion object {
-        const val PAGE_SIZE = 20
+        const val PAGE_SIZE = 100
         const val SORT_BY_YEAR_ASC = "제작년도 오름차순"
         const val SORT_BY_YEAR_DESC = "제작년도 내림차순"
     }

@@ -146,7 +146,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun showBottomSheetDialog() {
         BottomSheetDialog(
-            manuFactureYears = viewModel.makeManuFactureYearList(),
+            items = viewModel.makeManuFactureYearList(),
             onClick = { manuFactureYearSort ->
                 viewModel.updateManuFactureYearSort(manuFactureYearSort)
             }

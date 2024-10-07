@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.korea.search.databinding.BottomSheetDialogBinding
-import com.korea.search.dialog.model.ManuFactureYearSort
+import com.korea.search.dialog.model.BottomSheetItem
 
 class BottomSheetDialog(
-    private val manuFactureYears: List<ManuFactureYearSort>,
-    private val onClick: (ManuFactureYearSort) -> Unit,
+    private val items: List<BottomSheetItem>,
+    private val onClick: (BottomSheetItem) -> Unit,
 ) : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetDialogBinding? = null
@@ -43,7 +43,7 @@ class BottomSheetDialog(
 
     private fun setRecyclerView() {
         binding.itemListRv.adapter = bottomSheetAdapter
-        bottomSheetAdapter.submitList(manuFactureYears)
+        bottomSheetAdapter.submitList(items)
     }
 
 

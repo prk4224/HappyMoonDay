@@ -6,25 +6,25 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.korea.search.databinding.ManufactureYearItemBinding
-import com.korea.search.dialog.model.ManuFactureYearSort
+import com.korea.search.dialog.model.BottomSheetItem
 
 class BottomSheetAdapter(
-    private val onClick: (ManuFactureYearSort) -> Unit,
+    private val onClick: (BottomSheetItem) -> Unit,
     private val dismissDialog: () -> Unit,
-) : ListAdapter<ManuFactureYearSort, RecyclerView.ViewHolder>(diffUtil) {
+) : ListAdapter<BottomSheetItem, RecyclerView.ViewHolder>(diffUtil) {
 
     companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<ManuFactureYearSort>() {
+        private val diffUtil = object : DiffUtil.ItemCallback<BottomSheetItem>() {
             override fun areItemsTheSame(
-                oldItem: ManuFactureYearSort,
-                newItem: ManuFactureYearSort,
+                oldItem: BottomSheetItem,
+                newItem: BottomSheetItem,
             ): Boolean {
                 return oldItem.title == newItem.title
             }
 
             override fun areContentsTheSame(
-                oldItem: ManuFactureYearSort,
-                newItem: ManuFactureYearSort,
+                oldItem: BottomSheetItem,
+                newItem: BottomSheetItem,
             ): Boolean {
                 return oldItem == newItem
             }
