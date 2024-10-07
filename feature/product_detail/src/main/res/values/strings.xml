@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="writer">작가명</string>
+    <string name="manufacture_year">제작년도</string>
+    <string name="product_class_name">부문</string>
+    <string name="product_standard">규격</string>
+    <string name="manage_no_year">수집년도</string>
+    <string name="material_technic">재료 및 기법</string>
+</resources>

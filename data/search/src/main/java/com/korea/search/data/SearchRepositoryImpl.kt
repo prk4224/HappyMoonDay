@@ -35,7 +35,7 @@ class SearchRepositoryImpl @Inject constructor(
             imageUrl = this.mainImage ?: "",
             title = this.productNameKorean ?: "",
             writer = this.writerName ?: "",
-            manuFactureYear = this.manuFactureYear ?: "",
+            manuFactureYear = this.manufactureYear ?: "",
             productClassName = this.productClassName ?: "",
         )
     }

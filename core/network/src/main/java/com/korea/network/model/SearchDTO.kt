@@ -34,7 +34,7 @@ data class SearchDTO(
         @SerializedName("prdct_stndrd")
         val productStandard: String?,
         @SerializedName("mnfct_year")
-        val manuFactureYear: String?,
+        val manufactureYear: String?,
         @SerializedName("matrl_technic")
         val materialTechnic: String?,
         @SerializedName("prdct_detail")
