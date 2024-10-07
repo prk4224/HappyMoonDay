@@ -1,6 +1,5 @@
 package com.korea.product_detail.ui
 
-import android.graphics.Color
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -24,7 +23,7 @@ import com.korea.product_detail.R
 
 @Composable
 internal fun ProductDetailHeader(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     title: String,
     isBookmark: Boolean,
 ) {
@@ -79,7 +78,6 @@ internal fun ProductDetailHeader(
 @Composable
 fun PreViewProductDetailHeader() {
     ProductDetailHeader(
-        modifier = Modifier,
         title = "꿈은 이루어진다",
         isBookmark = false
     )

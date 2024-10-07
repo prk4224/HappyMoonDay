@@ -13,7 +13,7 @@ import com.korea.product_detail.model.ProductDetail
 
 @Composable
 fun ProductDetailScreen(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     productDetail: ProductDetail,
 ) {
     Surface {
@@ -22,7 +22,6 @@ fun ProductDetailScreen(
                 .fillMaxSize()
         ) {
             ProductDetailHeader(
-                modifier = Modifier,
                 title = "꿈은 이루어진다",
                 isBookmark = true,
             )
@@ -48,7 +47,6 @@ fun ProductDetailScreen(
 @Composable
 fun PreViewProductDetailScreen() {
     ProductDetailScreen(
-        modifier = Modifier,
         productDetail = ProductDetail(
             imageUrl = "https://collections.eseoul.go.kr/common/file/getImage.do?size=700&fileSeq=FILE_0000054019-8858",
             title = "꿈은 이루어진다.",

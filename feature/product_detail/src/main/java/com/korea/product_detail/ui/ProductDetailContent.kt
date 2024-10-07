@@ -22,7 +22,7 @@ import com.korea.product_detail.model.ProductDetail
 
 @Composable
 internal fun ProductDetailContent(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     productDetail: ProductDetail,
 ) {
     Column(
@@ -94,7 +94,7 @@ internal fun ProductDetailContent(
 
 @Composable
 private fun ContentItem(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     title: String,
     content: String,
 ) {
@@ -126,7 +126,6 @@ private fun ContentItem(
 @Composable
 fun PreViewProductDetailContent() {
     ProductDetailContent(
-        modifier = Modifier,
         productDetail = ProductDetail(
             imageUrl = "https://collections.eseoul.go.kr/common/file/getImage.do?size=700&fileSeq=FILE_0000054019-8858",
             title = "꿈은 이루어진다.",
