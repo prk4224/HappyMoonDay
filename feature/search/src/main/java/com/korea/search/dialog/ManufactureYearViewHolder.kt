@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.korea.search.databinding.ManufactureYearItemBinding
 import com.korea.search.dialog.model.BottomSheetItem
 
-class ManuFactureYearViewHolder(
+class ManufactureYearViewHolder(
     private val binding: ManufactureYearItemBinding,
     private val onClick: (BottomSheetItem) -> Unit,
     private val dismissDialog: () -> Unit,

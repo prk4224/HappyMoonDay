@@ -53,8 +53,8 @@ class SearchActivity : AppCompatActivity() {
                 }
 
                 launch {
-                    viewModel.selectedManuFactureYear.collect { manuFactureYear ->
-                        binding.filterManufactureYearTv.text = manuFactureYear
+                    viewModel.selectedManufactureYear.collect { manufactureYear ->
+                        binding.filterManufactureYearTv.text = manufactureYear
                         binding.artworksRv.scrollToPosition(0)
                     }
                 }
@@ -146,9 +146,9 @@ class SearchActivity : AppCompatActivity() {
 
     private fun showBottomSheetDialog() {
         BottomSheetDialog(
-            items = viewModel.makeManuFactureYearList(),
-            onClick = { manuFactureYearSort ->
-                viewModel.updateManuFactureYearSort(manuFactureYearSort)
+            items = viewModel.makeManufactureYearList(),
+            onClick = { manufactureYearSort ->
+                viewModel.updateManufactureYearSort(manufactureYearSort)
             }
         ).show(supportFragmentManager, "")
     }

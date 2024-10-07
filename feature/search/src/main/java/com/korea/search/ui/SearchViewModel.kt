@@ -24,8 +24,8 @@ class SearchViewModel @Inject constructor(
     private val _artworks = MutableStateFlow<List<Artwork>>(listOf())
     val artworks = _artworks.asStateFlow()
 
-    private val _selectedManuFactureYear = MutableStateFlow(SORT_BY_YEAR_ASC)
-    val selectedManuFactureYear = _selectedManuFactureYear.asStateFlow()
+    private val _selectedManufactureYear = MutableStateFlow(SORT_BY_YEAR_ASC)
+    val selectedManufactureYear = _selectedManufactureYear.asStateFlow()
 
     private var totalCount = 0
     private var searchKeyword = ""
@@ -86,33 +86,33 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun updateArtworks(artworks: List<Artwork>) {
-        if (selectedManuFactureYear.value == SORT_BY_YEAR_ASC) {
+        if (selectedManufactureYear.value == SORT_BY_YEAR_ASC) {
             _artworks.value = artworks.sortedBy {
-                it.manuFactureYear
+                it.manufactureYear
             }
         } else {
             _artworks.value = artworks.sortedByDescending {
-                it.manuFactureYear
+                it.manufactureYear
             }
         }
     }
 
-    fun makeManuFactureYearList(): List<BottomSheetItem> {
+    fun makeManufactureYearList(): List<BottomSheetItem> {
         return listOf(
             BottomSheetItem(
                 title = SORT_BY_YEAR_ASC,
-                isSelected = selectedManuFactureYear.value == SORT_BY_YEAR_ASC
+                isSelected = selectedManufactureYear.value == SORT_BY_YEAR_ASC
             ),
             BottomSheetItem(
                 title = SORT_BY_YEAR_DESC,
-                isSelected = selectedManuFactureYear.value == SORT_BY_YEAR_DESC
+                isSelected = selectedManufactureYear.value == SORT_BY_YEAR_DESC
             )
         )
     }
 
-    fun updateManuFactureYearSort(bottomSheetItem: BottomSheetItem) {
+    fun updateManufactureYearSort(bottomSheetItem: BottomSheetItem) {
         fetch(searchKeyword)
-        _selectedManuFactureYear.value = bottomSheetItem.title
+        _selectedManufactureYear.value = bottomSheetItem.title
     }
 
     companion object {

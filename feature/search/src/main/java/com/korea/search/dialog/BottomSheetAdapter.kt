@@ -32,7 +32,7 @@ class BottomSheetAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ManuFactureYearViewHolder(
+        return ManufactureYearViewHolder(
             ManufactureYearItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -45,7 +45,7 @@ class BottomSheetAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ManuFactureYearViewHolder -> {
+            is ManufactureYearViewHolder -> {
                 holder.bind(getItem(position))
             }
         }

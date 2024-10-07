@@ -11,7 +11,7 @@ class SearchViewHolder(
 
     fun bind(artwork: Artwork) {
         binding.titleTv.text = artwork.title
-        binding.writerManufactureTv.text = "${artwork.writer} (${artwork.manuFactureYear})"
+        binding.writerManufactureTv.text = "${artwork.writer} (${artwork.manufactureYear})"
         binding.classNameTv.text = artwork.productClassName
         loadMainImage(artwork.imageUrl)
     }

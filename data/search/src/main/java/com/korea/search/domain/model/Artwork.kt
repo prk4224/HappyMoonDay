@@ -4,6 +4,6 @@ data class Artwork(
     val imageUrl: String,
     val title: String,
     val writer: String,
-    val manuFactureYear: String,
+    val manufactureYear: String,
     val productClassName: String,
 )
