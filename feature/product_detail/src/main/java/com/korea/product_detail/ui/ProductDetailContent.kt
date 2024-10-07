@@ -124,7 +124,7 @@ private fun ContentItem(
     heightDp = 300
 )
 @Composable
-fun PreViewProductDetailContent() {
+private fun PreViewProductDetailContent() {
     ProductDetailContent(
         productDetail = ProductDetail(
             imageUrl = "https://collections.eseoul.go.kr/common/file/getImage.do?size=700&fileSeq=FILE_0000054019-8858",

@@ -12,7 +12,7 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-interface SearchModule {
+internal interface SearchModule {
 
     @Binds
     fun bindSearchDataSource(searchDataSourceImpl: SearchDataSourceImpl): SearchDataSource

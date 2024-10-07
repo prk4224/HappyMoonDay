@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.korea.search.databinding.ArtworkItemBinding
 import com.korea.search.domain.model.Artwork
 
-class SearchViewHolder(
+internal class SearchViewHolder(
     private val binding: ArtworkItemBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
 

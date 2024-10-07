@@ -6,7 +6,7 @@ import com.korea.search.domain.model.SearchParams
 import retrofit2.Response
 import javax.inject.Inject
 
-class SearchDataSourceImpl @Inject constructor(
+internal class SearchDataSourceImpl @Inject constructor(
     private val museumSearchApi: MuseumSearchApi,
 ) : SearchDataSource {
 

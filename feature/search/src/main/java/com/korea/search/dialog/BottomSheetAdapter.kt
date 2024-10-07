@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.korea.search.databinding.ManufactureYearItemBinding
 import com.korea.search.dialog.model.BottomSheetItem
 
-class BottomSheetAdapter(
+internal class BottomSheetAdapter(
     private val onClick: (BottomSheetItem) -> Unit,
     private val dismissDialog: () -> Unit,
 ) : ListAdapter<BottomSheetItem, RecyclerView.ViewHolder>(diffUtil) {

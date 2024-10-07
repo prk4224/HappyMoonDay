@@ -1,6 +1,6 @@
 package com.korea.product_detail.model
 
-data class ProductDetail(
+internal data class ProductDetail(
     val imageUrl: String,
     val title: String,
     val titleEnglish: String,

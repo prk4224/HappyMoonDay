@@ -76,7 +76,7 @@ internal fun ProductDetailHeader(
     backgroundColor = 0xffffffff
 )
 @Composable
-fun PreViewProductDetailHeader() {
+private fun PreViewProductDetailHeader() {
     ProductDetailHeader(
         title = "꿈은 이루어진다",
         isBookmark = false

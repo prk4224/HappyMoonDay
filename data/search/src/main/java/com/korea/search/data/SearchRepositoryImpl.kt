@@ -8,7 +8,7 @@ import com.korea.search.domain.model.SearchEntity
 import com.korea.search.domain.model.SearchParams
 import javax.inject.Inject
 
-class SearchRepositoryImpl @Inject constructor(
+internal class SearchRepositoryImpl @Inject constructor(
     private val searchDataSource: SearchDataSource,
 ) : SearchRepository {
     override suspend fun fetch(params: SearchParams): Result<SearchEntity> {

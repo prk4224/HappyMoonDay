@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+internal object NetworkModule {
 
     private const val API_KEY = "6b49677a67707075373169594f4f53"
     private const val BASE_URL = "http://openapi.seoul.go.kr:8088/$API_KEY/"

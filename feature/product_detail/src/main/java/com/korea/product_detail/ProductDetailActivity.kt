@@ -6,7 +6,7 @@ import com.korea.product_detail.databinding.ActivityProductDetailBinding
 import com.korea.product_detail.di.ProductDetailComposeInjector
 import com.korea.product_detail.model.ProductDetail
 
-class ProductDetailActivity : AppCompatActivity() {
+internal class ProductDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProductDetailBinding
 

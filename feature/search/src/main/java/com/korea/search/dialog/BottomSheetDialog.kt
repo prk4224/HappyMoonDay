@@ -8,7 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.korea.search.databinding.BottomSheetDialogBinding
 import com.korea.search.dialog.model.BottomSheetItem
 
-class BottomSheetDialog(
+internal class BottomSheetDialog(
     private val items: List<BottomSheetItem>,
     private val onClick: (BottomSheetItem) -> Unit,
 ) : BottomSheetDialogFragment() {

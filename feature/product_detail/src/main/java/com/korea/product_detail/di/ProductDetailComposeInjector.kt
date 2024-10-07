@@ -5,7 +5,7 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import com.korea.product_detail.model.ProductDetail
 import com.korea.product_detail.ui.ProductDetailScreen
 
-class ProductDetailComposeInjector {
+internal class ProductDetailComposeInjector {
 
     fun inject(
         container: ComposeView,

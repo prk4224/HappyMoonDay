@@ -12,7 +12,7 @@ import coil.compose.AsyncImage
 import com.korea.product_detail.model.ProductDetail
 
 @Composable
-fun ProductDetailScreen(
+internal fun ProductDetailScreen(
     modifier: Modifier = Modifier,
     productDetail: ProductDetail,
 ) {
@@ -45,7 +45,7 @@ fun ProductDetailScreen(
 
 @Preview
 @Composable
-fun PreViewProductDetailScreen() {
+private fun PreViewProductDetailScreen() {
     ProductDetailScreen(
         productDetail = ProductDetail(
             imageUrl = "https://collections.eseoul.go.kr/common/file/getImage.do?size=700&fileSeq=FILE_0000054019-8858",

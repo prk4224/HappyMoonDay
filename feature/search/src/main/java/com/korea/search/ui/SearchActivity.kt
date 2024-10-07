@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SearchActivity : AppCompatActivity() {
+internal class SearchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySearchBinding
     private val viewModel: SearchViewModel by viewModels()
