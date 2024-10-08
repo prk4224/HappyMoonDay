@@ -1,9 +1,7 @@
 package com.korea.product_detail.ui.viewmodel
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.korea.common.model.Artwork
 import com.korea.product_detail.domain.DeleteProductDetailUseCase
 import com.korea.product_detail.domain.InsertProductDetailUseCase
 import com.korea.product_detail.domain.IsExistsProductDetailUseCase

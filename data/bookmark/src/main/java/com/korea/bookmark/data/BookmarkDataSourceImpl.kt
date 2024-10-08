@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 internal class BookmarkDataSourceImpl @Inject constructor(
-    private val artworkDao: ArtworkDao
+    private val artworkDao: ArtworkDao,
 ) : BookmarkDataSource {
 
     override fun fetch(): Flow<List<ArtworkEntity>?> {
