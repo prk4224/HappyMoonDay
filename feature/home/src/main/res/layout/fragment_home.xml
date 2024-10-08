@@ -5,30 +5,31 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tilte_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="서울시림미술관"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:textStyle="bold"
         android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/home_tilte"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/search_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="소장품 검색"
+        android:background="@drawable/bg_stroke_1dp_radius_8dp"
         android:padding="24dp"
+        android:text="@string/search_content"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tilte_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

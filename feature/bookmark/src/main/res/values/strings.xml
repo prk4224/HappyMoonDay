@@ -1,2 +1,4 @@
 <resources>
+    <string name="bookmark_tilte">즐겨찾기</string>
+    <string name="artworks_text">소장품</string>
 </resources>
