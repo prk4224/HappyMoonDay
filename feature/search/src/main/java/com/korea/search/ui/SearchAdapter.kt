@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.korea.search.databinding.ArtworkItemBinding
 import com.korea.search.domain.model.Artwork
 
-internal class SearchAdapter : ListAdapter<Artwork, SearchViewHolder>(searchDiffUtil) {
+internal class SearchAdapter(
+    private val onClick: (Artwork) -> Unit,
+): ListAdapter<Artwork, SearchViewHolder>(searchDiffUtil) {
 
     companion object {
         private val searchDiffUtil = object : DiffUtil.ItemCallback<Artwork>() {
@@ -34,7 +36,8 @@ internal class SearchAdapter : ListAdapter<Artwork, SearchViewHolder>(searchDiff
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            onClick = onClick
         )
     }
 

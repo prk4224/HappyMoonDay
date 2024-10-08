@@ -18,7 +18,6 @@ internal class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
@@ -27,15 +26,24 @@ internal class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.textHome.setOnClickListener {
-            val activity = activity ?: return@setOnClickListener
-            val intent = Intent()
-            intent.setClassName(activity, "com.korea.search.ui.SearchActivity")
-            activity.startActivity(intent)
+            moveSearchActivity()
         }
+    }
+
+    private fun moveSearchActivity() {
+        val activity = activity ?: return
+        val intent = Intent().apply {
+            setClassName(activity, SEARCH_PACKAGE_NAME)
+        }
+        activity.startActivity(intent)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val SEARCH_PACKAGE_NAME = "com.korea.search.ui.SearchActivity"
     }
 }

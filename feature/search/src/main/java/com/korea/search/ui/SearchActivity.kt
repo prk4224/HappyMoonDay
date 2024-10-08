@@ -1,6 +1,7 @@
 package com.korea.search.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.korea.search.R
 import com.korea.search.databinding.ActivitySearchBinding
 import com.korea.search.dialog.BottomSheetDialog
+import com.korea.search.domain.model.Artwork
 import com.korea.search.state.SearchUiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -24,7 +26,11 @@ internal class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
     private val viewModel: SearchViewModel by viewModels()
     private val searchAdapter: SearchAdapter by lazy {
-        SearchAdapter()
+        SearchAdapter(
+            onClick = { artwork ->
+                moveProductDetail(artwork)
+            }
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,7 +130,7 @@ internal class SearchActivity : AppCompatActivity() {
         }
 
         backIv.setOnClickListener {
-            onBackClick()
+            onClickBack()
         }
 
         filterManufactureYearTv.setOnClickListener {
@@ -139,7 +145,16 @@ internal class SearchActivity : AppCompatActivity() {
         hideKeyboard()
     }
 
-    private fun onBackClick() {
+    private fun moveProductDetail(artwork: Artwork) {
+        val intent = Intent().apply {
+            setClassName(this@SearchActivity, PRODUCT_DETAIL_PACKAGE_NAME)
+            putExtra(ARTWORK, artwork)
+
+        }
+        startActivity(intent)
+    }
+
+    private fun onClickBack() {
         finish()
     }
 
@@ -162,6 +177,8 @@ internal class SearchActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val NEW_PAGE_POINT = 5
+        private const val NEW_PAGE_POINT = 5
+        private const val PRODUCT_DETAIL_PACKAGE_NAME = "com.korea.product_detail.ui.ProductDetailActivity"
+        private const val ARTWORK = "artwork"
     }
 }

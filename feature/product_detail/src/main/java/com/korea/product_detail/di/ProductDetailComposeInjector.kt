@@ -2,19 +2,21 @@ package com.korea.product_detail.di
 
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import com.korea.product_detail.model.ProductDetail
 import com.korea.product_detail.ui.ProductDetailScreen
+import com.korea.search.domain.model.Artwork
 
 internal class ProductDetailComposeInjector {
 
     fun inject(
         container: ComposeView,
-        productDetail: ProductDetail,
+        artwork: Artwork,
+        onClickBack: () -> Unit,
     ) = with(container) {
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
         setContent {
             ProductDetailScreen(
-                productDetail = productDetail
+                artwork = artwork,
+                onClickBack = onClickBack
             )
         }
     }

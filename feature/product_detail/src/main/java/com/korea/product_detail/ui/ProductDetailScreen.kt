@@ -9,12 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
-import com.korea.product_detail.model.ProductDetail
+import com.korea.search.domain.model.Artwork
 
 @Composable
 internal fun ProductDetailScreen(
     modifier: Modifier = Modifier,
-    productDetail: ProductDetail,
+    artwork: Artwork,
+    onClickBack: () -> Unit,
 ) {
     Surface {
         Column(
@@ -24,10 +25,11 @@ internal fun ProductDetailScreen(
             ProductDetailHeader(
                 title = "꿈은 이루어진다",
                 isBookmark = true,
+                onClickBack = onClickBack
             )
 
             AsyncImage(
-                model = productDetail.imageUrl,
+                model = artwork.imageUrl,
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1f),
@@ -37,7 +39,7 @@ internal fun ProductDetailScreen(
             ProductDetailContent(
                 modifier = Modifier
                     .weight(1F),
-                productDetail = productDetail
+                artwork = artwork
             )
         }
     }
@@ -47,7 +49,7 @@ internal fun ProductDetailScreen(
 @Composable
 private fun PreViewProductDetailScreen() {
     ProductDetailScreen(
-        productDetail = ProductDetail(
+        artwork = Artwork(
             imageUrl = "https://collections.eseoul.go.kr/common/file/getImage.do?size=700&fileSeq=FILE_0000054019-8858",
             title = "꿈은 이루어진다.",
             titleEnglish = "Dreams come ture",
@@ -57,6 +59,7 @@ private fun PreViewProductDetailScreen() {
             productStandard = "300x300cm",
             manageNoYear = "2000",
             materialTechnic = "캔버스에 유채"
-        )
+        ),
+        onClickBack = { }
     )
 }

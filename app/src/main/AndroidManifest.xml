@@ -26,10 +26,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
-        <activity
-            android:name="com.korea.search.ui.SearchActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.korea.product_detail.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -26,6 +27,7 @@ internal fun ProductDetailHeader(
     modifier: Modifier = Modifier,
     title: String,
     isBookmark: Boolean,
+    onClickBack: () -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -33,11 +35,11 @@ internal fun ProductDetailHeader(
             .height(IntrinsicSize.Max)
 
     ) {
-
         Image(
             modifier = Modifier
                 .padding(8.dp)
-                .size(30.dp),
+                .size(30.dp)
+                .clickable { onClickBack() },
             imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_back_24),
             contentDescription = null
         )
@@ -79,6 +81,7 @@ internal fun ProductDetailHeader(
 private fun PreViewProductDetailHeader() {
     ProductDetailHeader(
         title = "꿈은 이루어진다",
-        isBookmark = false
+        isBookmark = false,
+        onClickBack = { }
     )
 }

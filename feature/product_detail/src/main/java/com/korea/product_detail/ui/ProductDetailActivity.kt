@@ -1,14 +1,20 @@
-package com.korea.product_detail
+package com.korea.product_detail.ui
 
+import android.content.Intent
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import com.korea.product_detail.databinding.ActivityProductDetailBinding
 import com.korea.product_detail.di.ProductDetailComposeInjector
-import com.korea.product_detail.model.ProductDetail
+import com.korea.search.domain.model.Artwork
 
 internal class ProductDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProductDetailBinding
+    private val artwork by lazy {
+        intent.parcelable(ARTWORK) ?: Artwork()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,17 +26,22 @@ internal class ProductDetailActivity : AppCompatActivity() {
     private fun injectProductDetailScreen() = with(ProductDetailComposeInjector()) {
         inject(
             container = binding.containerCv,
-            productDetail = ProductDetail(
-                imageUrl = "https://collections.eseoul.go.kr/common/file/getImage.do?size=700&fileSeq=FILE_0000054019-8858",
-                title = "꿈은 이루어진다.",
-                titleEnglish = "Dreams come ture",
-                writer = "홍연화",
-                manufactureYear = "2023",
-                productClassName = "드로잉&판화",
-                productStandard = "300x300cm",
-                manageNoYear = "2000",
-                materialTechnic = "캔버스에 유채"
-            )
+            artwork = artwork,
+            onClickBack = ::onClickBack
         )
+
+    }
+
+    private fun onClickBack() {
+        finish()
+    }
+
+    private inline fun <reified T : Parcelable> Intent.parcelable(key: String): T? = when {
+        SDK_INT >= 33 -> getParcelableExtra(key, T::class.java)
+        else -> @Suppress("DEPRECATION") getParcelableExtra(key) as? T
+    }
+
+    companion object {
+        private const val ARTWORK = "artwork"
     }
 }

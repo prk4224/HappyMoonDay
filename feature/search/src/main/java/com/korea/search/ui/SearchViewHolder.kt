@@ -7,12 +7,16 @@ import com.korea.search.domain.model.Artwork
 
 internal class SearchViewHolder(
     private val binding: ArtworkItemBinding,
+    private val onClick: (Artwork) -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(artwork: Artwork) {
         binding.titleTv.text = artwork.title
         binding.writerManufactureTv.text = "${artwork.writer} (${artwork.manufactureYear})"
         binding.classNameTv.text = artwork.productClassName
+        binding.root.setOnClickListener {
+            onClick(artwork)
+        }
         loadMainImage(artwork.imageUrl)
     }
 

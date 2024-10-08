@@ -43,6 +43,7 @@ android {
 dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:search"))
+    implementation(project(":feature:product_detail"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -34,9 +34,13 @@ internal class SearchRepositoryImpl @Inject constructor(
         return Artwork(
             imageUrl = this.mainImage ?: "",
             title = this.productNameKorean ?: "",
+            titleEnglish = this.productNameEnglish ?: "",
             writer = this.writerName ?: "",
             manufactureYear = this.manufactureYear ?: "",
             productClassName = this.productClassName ?: "",
+            productStandard = this.productStandard ?: "",
+            manageNoYear = this.manageNoYear ?: "",
+            materialTechnic = this.materialTechnic ?: "",
         )
     }
 }
