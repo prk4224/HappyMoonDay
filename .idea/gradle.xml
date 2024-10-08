@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/data/product_detail" />
             <option value="$PROJECT_DIR$/data/search" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/bookmark" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/product_detail" />
             <option value="$PROJECT_DIR$/feature/search" />
