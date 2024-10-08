@@ -18,12 +18,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.korea.product_detail.R
-import com.korea.search.domain.model.Artwork
+import com.korea.product_detail.model.ProductDetailArtwork
 
 @Composable
 internal fun ProductDetailContent(
     modifier: Modifier = Modifier,
-    artwork: Artwork,
+    productDetailArtwork: ProductDetailArtwork,
 ) {
     Column(
         modifier = modifier
@@ -31,7 +31,7 @@ internal fun ProductDetailContent(
             .padding(12.dp)
     ) {
         Text(
-            text = artwork.title,
+            text = productDetailArtwork.title,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
@@ -40,7 +40,7 @@ internal fun ProductDetailContent(
         Spacer(Modifier.height(4.dp))
 
         Text(
-            text = artwork.titleEnglish,
+            text = productDetailArtwork.titleEnglish,
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
@@ -52,42 +52,42 @@ internal fun ProductDetailContent(
             modifier = Modifier
                 .weight(1F),
             title = stringResource(R.string.writer),
-            content = artwork.writer
+            content = productDetailArtwork.writer
         )
 
         ContentItem(
             modifier = Modifier
                 .weight(1F),
             title = stringResource(R.string.manufacture_year),
-            content = "${artwork.manufactureYear}년"
+            content = "${productDetailArtwork.manufactureYear}년"
         )
 
         ContentItem(
             modifier = Modifier
                 .weight(1F),
             title = stringResource(R.string.product_class_name),
-            content = artwork.productClassName
+            content = productDetailArtwork.productClassName
         )
 
         ContentItem(
             modifier = Modifier
                 .weight(1F),
             title = stringResource(R.string.product_standard),
-            content = artwork.productStandard
+            content = productDetailArtwork.productStandard
         )
 
         ContentItem(
             modifier = Modifier
                 .weight(1F),
             title = stringResource(R.string.manage_no_year),
-            content = artwork.manageNoYear
+            content = productDetailArtwork.manageNoYear
         )
 
         ContentItem(
             modifier = Modifier
                 .weight(1F),
             title = stringResource(R.string.material_technic),
-            content = artwork.materialTechnic
+            content = productDetailArtwork.materialTechnic
         )
     }
 }
@@ -126,7 +126,7 @@ private fun ContentItem(
 @Composable
 private fun PreViewProductDetailContent() {
     ProductDetailContent(
-        artwork = Artwork(
+        productDetailArtwork = ProductDetailArtwork(
             imageUrl = "https://collections.eseoul.go.kr/common/file/getImage.do?size=700&fileSeq=FILE_0000054019-8858",
             title = "꿈은 이루어진다.",
             titleEnglish = "Dreams come ture",

@@ -3,7 +3,7 @@ package com.korea.search.data
 import com.korea.network.model.SearchDTO
 import com.korea.search.common.ApiUtils.safeApiCall
 import com.korea.search.domain.SearchRepository
-import com.korea.search.domain.model.Artwork
+import com.korea.search.domain.model.SearchArtwork
 import com.korea.search.domain.model.SearchEntity
 import com.korea.search.domain.model.SearchParams
 import javax.inject.Inject
@@ -24,14 +24,14 @@ internal class SearchRepositoryImpl @Inject constructor(
 
                 SearchEntity(
                     totalCount = totalCount,
-                    artworks = artworks
+                    searchArtworks = artworks
                 )
             }
         )
     }
 
-    private fun SearchDTO.Row.convertToArtwork(): Artwork {
-        return Artwork(
+    private fun SearchDTO.Row.convertToArtwork(): SearchArtwork {
+        return SearchArtwork(
             imageUrl = this.mainImage ?: "",
             title = this.productNameKorean ?: "",
             titleEnglish = this.productNameEnglish ?: "",

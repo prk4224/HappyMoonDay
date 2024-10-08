@@ -11,7 +11,7 @@ import com.korea.database.entity.ArtworkEntity
     ],
     version = 1
 )
-abstract class HappyMuseumDataBase: RoomDatabase() {
+abstract class HappyMuseumDataBase : RoomDatabase() {
     abstract fun artworkDao(): ArtworkDao
 
     companion object {

@@ -18,7 +18,7 @@ class DataBaseModule {
     @Singleton
     @Provides
     fun provideHappyMuseumDataBase(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ): HappyMuseumDataBase {
         return Room.databaseBuilder(
             context = context,
@@ -30,6 +30,6 @@ class DataBaseModule {
     @Singleton
     @Provides
     fun provideArtworkDao(
-        dataBase: HappyMuseumDataBase
+        dataBase: HappyMuseumDataBase,
     ): ArtworkDao = dataBase.artworkDao()
 }

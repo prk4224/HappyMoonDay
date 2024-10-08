@@ -17,7 +17,7 @@ import com.korea.common.constants.PackageNameConstants.PRODUCT_DETAIL_PACKAGE_NA
 import com.korea.search.R
 import com.korea.search.databinding.ActivitySearchBinding
 import com.korea.search.dialog.BottomSheetDialog
-import com.korea.search.domain.model.Artwork
+import com.korea.search.domain.model.SearchArtwork
 import com.korea.search.state.SearchUiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -147,10 +147,10 @@ internal class SearchActivity : AppCompatActivity() {
         hideKeyboard()
     }
 
-    private fun moveProductDetail(artwork: Artwork) {
+    private fun moveProductDetail(searchArtwork: SearchArtwork) {
         val intent = Intent().apply {
             setClassName(this@SearchActivity, PRODUCT_DETAIL_PACKAGE_NAME)
-            putExtra(ARTWORK, artwork)
+            putExtra(ARTWORK, searchArtwork)
 
         }
         startActivity(intent)

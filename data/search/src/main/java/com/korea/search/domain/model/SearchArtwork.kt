@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Artwork(
+data class SearchArtwork(
     val imageUrl: String = "",
     val title: String = "",
     val titleEnglish: String = "",

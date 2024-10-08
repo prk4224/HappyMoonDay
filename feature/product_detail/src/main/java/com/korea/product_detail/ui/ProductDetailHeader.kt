@@ -28,6 +28,7 @@ internal fun ProductDetailHeader(
     title: String,
     isBookmark: Boolean,
     onClickBack: () -> Unit,
+    onClickBookmark: () -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -66,7 +67,8 @@ internal fun ProductDetailHeader(
         Image(
             modifier = Modifier
                 .padding(8.dp)
-                .size(30.dp),
+                .size(30.dp)
+                .clickable { onClickBookmark() },
             imageVector = ImageVector.vectorResource(bookmarkIcon),
             contentDescription = null
         )
@@ -82,6 +84,7 @@ private fun PreViewProductDetailHeader() {
     ProductDetailHeader(
         title = "꿈은 이루어진다",
         isBookmark = false,
-        onClickBack = { }
+        onClickBack = { },
+        onClickBookmark = { },
     )
 }

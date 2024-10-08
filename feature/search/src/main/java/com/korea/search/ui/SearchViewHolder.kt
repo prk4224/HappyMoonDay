@@ -3,21 +3,21 @@ package com.korea.search.ui
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.korea.search.databinding.ArtworkItemBinding
-import com.korea.search.domain.model.Artwork
+import com.korea.search.domain.model.SearchArtwork
 
 internal class SearchViewHolder(
     private val binding: ArtworkItemBinding,
-    private val onClick: (Artwork) -> Unit,
+    private val onClick: (SearchArtwork) -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(artwork: Artwork) {
-        binding.titleTv.text = artwork.title
-        binding.writerManufactureTv.text = "${artwork.writer} (${artwork.manufactureYear})"
-        binding.classNameTv.text = artwork.productClassName
+    fun bind(searchArtwork: SearchArtwork) {
+        binding.titleTv.text = searchArtwork.title
+        binding.writerManufactureTv.text = "${searchArtwork.writer} (${searchArtwork.manufactureYear})"
+        binding.classNameTv.text = searchArtwork.productClassName
         binding.root.setOnClickListener {
-            onClick(artwork)
+            onClick(searchArtwork)
         }
-        loadMainImage(artwork.imageUrl)
+        loadMainImage(searchArtwork.imageUrl)
     }
 
     private fun loadMainImage(imageUrl: String) {

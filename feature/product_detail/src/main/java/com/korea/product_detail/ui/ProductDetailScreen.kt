@@ -6,30 +6,46 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.korea.search.domain.model.Artwork
+import com.korea.product_detail.model.ProductDetailArtwork
 
 @Composable
 internal fun ProductDetailScreen(
     modifier: Modifier = Modifier,
-    artwork: Artwork,
+    productDetailArtwork: ProductDetailArtwork,
     onClickBack: () -> Unit,
+    viewModel: ProductDetailViewModel = hiltViewModel(),
 ) {
+    val isExists by viewModel.isBookmark.collectAsStateWithLifecycle()
+
+    LaunchedEffect(Unit) {
+        viewModel.updateBookmarkStatus(productDetailArtwork.imageUrl)
+    }
+
     Surface {
         Column(
             modifier = modifier
                 .fillMaxSize()
         ) {
             ProductDetailHeader(
-                title = "꿈은 이루어진다",
-                isBookmark = true,
-                onClickBack = onClickBack
+                title = productDetailArtwork.title,
+                isBookmark = isExists,
+                onClickBack = onClickBack,
+                onClickBookmark = {
+                    viewModel.click(productDetailArtwork)
+                }
             )
 
             AsyncImage(
-                model = artwork.imageUrl,
+                model = productDetailArtwork.imageUrl,
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1f),
@@ -39,7 +55,7 @@ internal fun ProductDetailScreen(
             ProductDetailContent(
                 modifier = Modifier
                     .weight(1F),
-                artwork = artwork
+                productDetailArtwork = productDetailArtwork
             )
         }
     }
@@ -49,7 +65,7 @@ internal fun ProductDetailScreen(
 @Composable
 private fun PreViewProductDetailScreen() {
     ProductDetailScreen(
-        artwork = Artwork(
+        productDetailArtwork = ProductDetailArtwork(
             imageUrl = "https://collections.eseoul.go.kr/common/file/getImage.do?size=700&fileSeq=FILE_0000054019-8858",
             title = "꿈은 이루어진다.",
             titleEnglish = "Dreams come ture",
@@ -60,6 +76,6 @@ private fun PreViewProductDetailScreen() {
             manageNoYear = "2000",
             materialTechnic = "캔버스에 유채"
         ),
-        onClickBack = { }
+        onClickBack = { },
     )
 }

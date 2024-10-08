@@ -6,24 +6,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.korea.search.databinding.ArtworkItemBinding
-import com.korea.search.domain.model.Artwork
+import com.korea.search.domain.model.SearchArtwork
 
 internal class SearchAdapter(
-    private val onClick: (Artwork) -> Unit,
-): ListAdapter<Artwork, SearchViewHolder>(searchDiffUtil) {
+    private val onClick: (SearchArtwork) -> Unit,
+): ListAdapter<SearchArtwork, SearchViewHolder>(searchDiffUtil) {
 
     companion object {
-        private val searchDiffUtil = object : DiffUtil.ItemCallback<Artwork>() {
+        private val searchDiffUtil = object : DiffUtil.ItemCallback<SearchArtwork>() {
             override fun areItemsTheSame(
-                oldItem: Artwork,
-                newItem: Artwork,
+                oldItem: SearchArtwork,
+                newItem: SearchArtwork,
             ): Boolean {
                 return oldItem.imageUrl == newItem.imageUrl
             }
 
             override fun areContentsTheSame(
-                oldItem: Artwork,
-                newItem: Artwork,
+                oldItem: SearchArtwork,
+                newItem: SearchArtwork,
             ): Boolean {
                 return oldItem == newItem
             }

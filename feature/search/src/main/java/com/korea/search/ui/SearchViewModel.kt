@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.korea.search.dialog.model.BottomSheetItem
 import com.korea.search.domain.FetchSearchUseCase
-import com.korea.search.domain.model.Artwork
+import com.korea.search.domain.model.SearchArtwork
 import com.korea.search.domain.model.SearchParams
 import com.korea.search.state.SearchUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +21,7 @@ internal class SearchViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<SearchUiState>(SearchUiState.None)
     val uiState = _uiState.asStateFlow()
 
-    private val _artworks = MutableStateFlow<List<Artwork>>(listOf())
+    private val _artworks = MutableStateFlow<List<SearchArtwork>>(listOf())
     val artworks = _artworks.asStateFlow()
 
     private val _selectedManufactureYear = MutableStateFlow(SORT_BY_YEAR_ASC)
@@ -51,7 +51,7 @@ internal class SearchViewModel @Inject constructor(
                     if (item.totalCount == 0) {
                         _uiState.value = SearchUiState.Empty
                     } else {
-                        updateArtworks(item.artworks)
+                        updateArtworks(item.searchArtworks)
                         startIndex += PAGE_SIZE + 1
                         totalCount = item.totalCount
                         _uiState.value = SearchUiState.Success
@@ -78,20 +78,20 @@ internal class SearchViewModel @Inject constructor(
 
             fetchSearchUseCase(params)
                 .onSuccess { item ->
-                    val newArtwork = artworks.value + item.artworks
+                    val newArtwork = artworks.value + item.searchArtworks
                     _artworks.value = newArtwork
                     startIndex += PAGE_SIZE + 1
                 }
         }
     }
 
-    private fun updateArtworks(artworks: List<Artwork>) {
+    private fun updateArtworks(searchArtworks: List<SearchArtwork>) {
         if (selectedManufactureYear.value == SORT_BY_YEAR_ASC) {
-            _artworks.value = artworks.sortedBy {
+            _artworks.value = searchArtworks.sortedBy {
                 it.manufactureYear
             }
         } else {
-            _artworks.value = artworks.sortedByDescending {
+            _artworks.value = searchArtworks.sortedByDescending {
                 it.manufactureYear
             }
         }

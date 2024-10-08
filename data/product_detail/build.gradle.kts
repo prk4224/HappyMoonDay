@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.korea.database"
+    namespace = "com.korea.product_detail"
     compileSdk = 34
 
     defaultConfig {
@@ -35,12 +35,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:database"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+
     implementation(libs.dagger.hilt)
     kapt(libs.dagger.hilt.compiler)
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    annotationProcessor(libs.room.compiler)
-    kapt(libs.room.compiler)
 }
