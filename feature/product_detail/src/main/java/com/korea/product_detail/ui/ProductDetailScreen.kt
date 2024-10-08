@@ -8,8 +8,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
@@ -23,9 +25,10 @@ internal fun ProductDetailScreen(
     viewModel: ProductDetailViewModel = hiltViewModel(),
 ) {
     val isExists by viewModel.isBookmark.collectAsStateWithLifecycle()
+    var isShowBookmarkDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
-        viewModel.updateBookmarkStatus(productDetailArtwork.imageUrl)
+        viewModel.observeIsBookmark(productDetailArtwork.imageUrl)
     }
 
     Surface {
@@ -38,7 +41,7 @@ internal fun ProductDetailScreen(
                 isBookmark = isExists,
                 onClickBack = onClickBack,
                 onClickBookmark = {
-                    viewModel.click(productDetailArtwork)
+                    isShowBookmarkDialog = true
                 }
             )
 
@@ -56,24 +59,17 @@ internal fun ProductDetailScreen(
                 productDetailArtwork = productDetailArtwork
             )
         }
-    }
-}
 
-@Preview
-@Composable
-private fun PreViewProductDetailScreen() {
-    ProductDetailScreen(
-        productDetailArtwork = ProductDetailArtwork(
-            imageUrl = "https://collections.eseoul.go.kr/common/file/getImage.do?size=700&fileSeq=FILE_0000054019-8858",
-            title = "꿈은 이루어진다.",
-            titleEnglish = "Dreams come ture",
-            writer = "홍연화",
-            manufactureYear = "2023",
-            productClassName = "드로잉&판화",
-            productStandard = "300x300cm",
-            manageNoYear = "2000",
-            materialTechnic = "캔버스에 유채"
-        ),
-        onClickBack = { },
-    )
+        if(isShowBookmarkDialog) {
+            BookmarkDialog(
+                isBookmark = isExists,
+                onClick = {
+                    viewModel.update(productDetailArtwork)
+                },
+                dismiss = {
+                    isShowBookmarkDialog = false
+                }
+            )
+        }
+    }
 }

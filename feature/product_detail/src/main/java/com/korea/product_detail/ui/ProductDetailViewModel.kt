@@ -22,7 +22,7 @@ class ProductDetailViewModel @Inject constructor(
     private val _isBookmark = MutableStateFlow(false)
     val isBookmark = _isBookmark.asStateFlow()
 
-    fun updateBookmarkStatus(imageUrl: String) {
+    fun observeIsBookmark(imageUrl: String) {
         viewModelScope.launch {
             isExistsProductDetailUseCase(imageUrl).collect { isExists ->
                 _isBookmark.value = isExists
@@ -30,7 +30,7 @@ class ProductDetailViewModel @Inject constructor(
         }
     }
 
-    fun click(productDetailArtwork: ProductDetailArtwork) {
+    fun update(productDetailArtwork: ProductDetailArtwork) {
         if (isBookmark.value) {
             delete(productDetailArtwork)
         } else {
