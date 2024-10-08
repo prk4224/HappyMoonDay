@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.korea.common.constants.PackageNameConstants.SEARCH_PACKAGE_NAME
 import com.korea.home.databinding.FragmentHomeBinding
 
 internal class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = checkNotNull(_binding)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,9 +42,5 @@ internal class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        private const val SEARCH_PACKAGE_NAME = "com.korea.search.ui.SearchActivity"
     }
 }

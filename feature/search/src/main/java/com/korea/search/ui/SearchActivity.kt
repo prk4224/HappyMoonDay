@@ -12,6 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.korea.common.constants.IntentKeyConstants.ARTWORK
+import com.korea.common.constants.PackageNameConstants.PRODUCT_DETAIL_PACKAGE_NAME
 import com.korea.search.R
 import com.korea.search.databinding.ActivitySearchBinding
 import com.korea.search.dialog.BottomSheetDialog
@@ -178,7 +180,5 @@ internal class SearchActivity : AppCompatActivity() {
 
     companion object {
         private const val NEW_PAGE_POINT = 5
-        private const val PRODUCT_DETAIL_PACKAGE_NAME = "com.korea.product_detail.ui.ProductDetailActivity"
-        private const val ARTWORK = "artwork"
     }
 }

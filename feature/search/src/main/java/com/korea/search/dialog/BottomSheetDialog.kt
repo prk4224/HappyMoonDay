@@ -14,8 +14,7 @@ internal class BottomSheetDialog(
 ) : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetDialogBinding? = null
-    val binding
-        get() = checkNotNull(_binding)
+    val binding get() = checkNotNull(_binding)
 
     private val bottomSheetAdapter by lazy {
         BottomSheetAdapter(
