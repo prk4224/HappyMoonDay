@@ -5,23 +5,20 @@ import androidx.lifecycle.viewModelScope
 import com.korea.bookmark.domain.FetchBookmarkUseCase
 import com.korea.bookmark.model.BookmarkArtwork
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
 internal class BookmarkViewModel @Inject constructor(
-    private val fetchBookmarkUseCase: FetchBookmarkUseCase
-): ViewModel() {
-    private val _artworks = MutableStateFlow<List<BookmarkArtwork>>(listOf())
-    val artworks = _artworks.asStateFlow()
+    fetchBookmarkUseCase: FetchBookmarkUseCase,
+) : ViewModel() {
 
-    fun fetch() {
-        viewModelScope.launch {
-            fetchBookmarkUseCase().collect { items ->
-                _artworks.value = items
-            }
-        }
-    }
+    val artworks: StateFlow<List<BookmarkArtwork>> = fetchBookmarkUseCase()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = listOf(),
+        )
 }

@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,12 +24,9 @@ internal fun ProductDetailScreen(
     onClickBack: () -> Unit,
     viewModel: ProductDetailViewModel = hiltViewModel(),
 ) {
-    val isExists by viewModel.isBookmark.collectAsStateWithLifecycle()
+    val isBookmark by viewModel.isBookmark(productDetailArtwork.imageUrl)
+        .collectAsStateWithLifecycle()
     var isShowBookmarkDialog by remember { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        viewModel.observeIsBookmark(productDetailArtwork.imageUrl)
-    }
 
     Surface {
         Column(
@@ -39,7 +35,7 @@ internal fun ProductDetailScreen(
         ) {
             ProductDetailHeader(
                 title = productDetailArtwork.title,
-                isBookmark = isExists,
+                isBookmark = isBookmark,
                 onClickBack = onClickBack,
                 onClickBookmark = {
                     isShowBookmarkDialog = true
@@ -61,11 +57,14 @@ internal fun ProductDetailScreen(
             )
         }
 
-        if(isShowBookmarkDialog) {
+        if (isShowBookmarkDialog) {
             BookmarkDialog(
-                isBookmark = isExists,
+                isBookmark = isBookmark,
                 onClick = {
-                    viewModel.update(productDetailArtwork)
+                    viewModel.update(
+                        productDetailArtwork = productDetailArtwork,
+                        isBookmark = isBookmark,
+                    )
                 },
                 dismiss = {
                     isShowBookmarkDialog = false

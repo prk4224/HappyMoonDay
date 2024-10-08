@@ -43,7 +43,6 @@ internal class BookmarkFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.fetch()
         binding.artworksRv.adapter = bookmarkAdapter
         observeViewModelData()
     }

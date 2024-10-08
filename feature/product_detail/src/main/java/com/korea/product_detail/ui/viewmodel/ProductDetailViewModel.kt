@@ -1,14 +1,17 @@
 package com.korea.product_detail.ui.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.korea.common.model.Artwork
 import com.korea.product_detail.domain.DeleteProductDetailUseCase
 import com.korea.product_detail.domain.InsertProductDetailUseCase
 import com.korea.product_detail.domain.IsExistsProductDetailUseCase
 import com.korea.product_detail.model.ProductDetailArtwork
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,19 +22,15 @@ class ProductDetailViewModel @Inject constructor(
     private val deleteProductDetailUseCase: DeleteProductDetailUseCase,
 ) : ViewModel() {
 
-    private val _isBookmark = MutableStateFlow(false)
-    val isBookmark = _isBookmark.asStateFlow()
+    fun isBookmark(imageUrl: String): StateFlow<Boolean> = isExistsProductDetailUseCase(imageUrl)
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = false,
+        )
 
-    fun observeIsBookmark(imageUrl: String) {
-        viewModelScope.launch {
-            isExistsProductDetailUseCase(imageUrl).collect { isExists ->
-                _isBookmark.value = isExists
-            }
-        }
-    }
-
-    fun update(productDetailArtwork: ProductDetailArtwork) {
-        if (isBookmark.value) {
+    fun update(productDetailArtwork: ProductDetailArtwork, isBookmark: Boolean) {
+        if (isBookmark) {
             delete(productDetailArtwork)
         } else {
             insert(productDetailArtwork)
