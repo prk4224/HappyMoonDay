@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.korea.common.constants.IntentKeyConstants.ARTWORK
 import com.korea.common.constants.PackageNameConstants.PRODUCT_DETAIL_PACKAGE_NAME
+import com.korea.common.model.Artwork
 import com.korea.search.R
 import com.korea.search.databinding.ActivitySearchBinding
 import com.korea.search.dialog.BottomSheetDialog
@@ -150,7 +151,7 @@ internal class SearchActivity : AppCompatActivity() {
     private fun moveProductDetail(searchArtwork: SearchArtwork) {
         val intent = Intent().apply {
             setClassName(this@SearchActivity, PRODUCT_DETAIL_PACKAGE_NAME)
-            putExtra(ARTWORK, searchArtwork)
+            putExtra(ARTWORK, searchArtwork.convertToArtwork())
 
         }
         startActivity(intent)
@@ -175,6 +176,20 @@ internal class SearchActivity : AppCompatActivity() {
         inputMethodManager.hideSoftInputFromWindow(
             currentFocus?.windowToken,
             InputMethodManager.HIDE_NOT_ALWAYS
+        )
+    }
+
+    private fun SearchArtwork.convertToArtwork(): Artwork {
+        return Artwork(
+            imageUrl = imageUrl,
+            title = title,
+            titleEnglish = titleEnglish,
+            writer = writer,
+            manufactureYear = manufactureYear,
+            productClassName = productClassName,
+            productStandard = productStandard,
+            manageNoYear = manageNoYear,
+            materialTechnic = materialTechnic
         )
     }
 

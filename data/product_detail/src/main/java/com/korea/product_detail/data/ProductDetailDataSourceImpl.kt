@@ -5,8 +5,7 @@ import com.korea.database.entity.ArtworkEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-
-class ProductDetailDataSourceImpl @Inject constructor(
+internal class ProductDetailDataSourceImpl @Inject constructor(
     private val artworkDao: ArtworkDao,
 ) : ProductDetailDataSource {
 

@@ -11,7 +11,7 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-interface ProductModule {
+internal interface ProductModule {
     @Binds
     fun bindProductDetailDataSource(productDetailDataSourceImpl: ProductDetailDataSourceImpl): ProductDetailDataSource
 

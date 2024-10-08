@@ -8,7 +8,7 @@ import com.korea.happymoonday.databinding.ActivitySplashBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashActivity : AppCompatActivity() {
+internal class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
 

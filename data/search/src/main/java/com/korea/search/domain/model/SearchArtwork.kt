@@ -1,9 +1,5 @@
 package com.korea.search.domain.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 data class SearchArtwork(
     val imageUrl: String = "",
     val title: String = "",
@@ -14,4 +10,4 @@ data class SearchArtwork(
     val productStandard: String = "",
     val manageNoYear: String = "",
     val materialTechnic: String = "",
-) : Parcelable
+)

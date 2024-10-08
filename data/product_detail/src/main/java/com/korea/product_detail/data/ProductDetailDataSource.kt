@@ -3,7 +3,7 @@ package com.korea.product_detail.data
 import com.korea.database.entity.ArtworkEntity
 import kotlinx.coroutines.flow.Flow
 
-interface ProductDetailDataSource {
+internal interface ProductDetailDataSource {
 
     suspend fun insert(info: ArtworkEntity)
 

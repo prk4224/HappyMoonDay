@@ -1,7 +1,7 @@
 package com.korea.search.data
 
+import com.korea.common.utils.ApiUtils.safeApiCall
 import com.korea.network.model.SearchDTO
-import com.korea.search.common.ApiUtils.safeApiCall
 import com.korea.search.domain.SearchRepository
 import com.korea.search.domain.model.SearchArtwork
 import com.korea.search.domain.model.SearchEntity

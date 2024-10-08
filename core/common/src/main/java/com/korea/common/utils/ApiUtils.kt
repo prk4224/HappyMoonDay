@@ -1,8 +1,8 @@
-package com.korea.search.common
+package com.korea.common.utils
 
 import retrofit2.Response
 
-internal object ApiUtils {
+object ApiUtils {
     suspend fun <T, R> safeApiCall(
         apiCall: suspend () -> Response<T>,
         convert: (T) -> R,

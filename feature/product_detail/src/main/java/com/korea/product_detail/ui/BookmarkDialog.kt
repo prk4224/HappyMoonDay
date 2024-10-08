@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun BookmarkDialog(
+internal fun BookmarkDialog(
     modifier: Modifier = Modifier,
     isBookmark: Boolean,
     onClick: () -> Unit,

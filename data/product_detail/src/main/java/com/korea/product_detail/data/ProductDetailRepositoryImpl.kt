@@ -6,7 +6,7 @@ import com.korea.product_detail.model.ProductDetailArtwork
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class ProductDetailRepositoryImpl @Inject constructor(
+internal class ProductDetailRepositoryImpl @Inject constructor(
     private val productDetailDataSource: ProductDetailDataSource,
 ) : ProductDetailRepository {
 

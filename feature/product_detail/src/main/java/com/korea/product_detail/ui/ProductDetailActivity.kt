@@ -3,19 +3,19 @@ package com.korea.product_detail.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.korea.common.constants.IntentKeyConstants.ARTWORK
+import com.korea.common.model.Artwork
 import com.korea.common.utils.IntentUtils.parcelable
 import com.korea.product_detail.databinding.ActivityProductDetailBinding
 import com.korea.product_detail.di.ProductDetailComposeInjector
 import com.korea.product_detail.model.ProductDetailArtwork
-import com.korea.search.domain.model.SearchArtwork
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 internal class ProductDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProductDetailBinding
-    private val searchArtwork by lazy {
-        intent.parcelable(ARTWORK) ?: SearchArtwork()
+    private val artwork by lazy {
+        intent.parcelable(ARTWORK) ?: Artwork()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ internal class ProductDetailActivity : AppCompatActivity() {
     private fun injectProductDetailScreen() = with(ProductDetailComposeInjector()) {
         inject(
             container = binding.containerCv,
-            productDetailArtwork = searchArtwork.convertToProductDetail(),
+            productDetailArtwork = artwork.convertToProductDetail(),
             onClickBack = ::goBack,
         )
     }
@@ -37,7 +37,7 @@ internal class ProductDetailActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun SearchArtwork.convertToProductDetail(): ProductDetailArtwork {
+    private fun Artwork.convertToProductDetail(): ProductDetailArtwork {
         return ProductDetailArtwork(
             imageUrl = imageUrl,
             title = title,

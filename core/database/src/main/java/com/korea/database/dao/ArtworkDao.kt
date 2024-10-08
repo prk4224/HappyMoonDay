@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 interface ArtworkDao {
 
     @Query("SELECT * FROM ARTWORK_LIST_TABLE")
-    suspend fun fetch(): List<ArtworkEntity>?
+    fun fetch(): Flow<List<ArtworkEntity>?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(info: ArtworkEntity)

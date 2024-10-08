@@ -1,4 +1,4 @@
-package com.korea.product_detail.ui
+package com.korea.product_detail.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
