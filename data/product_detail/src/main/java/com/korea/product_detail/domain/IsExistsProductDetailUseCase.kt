@@ -4,9 +4,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class IsExistsProductDetailUseCase @Inject constructor(
-    private val productDetailRepository: ProductDetailRepository
+    private val productDetailRepository: ProductDetailRepository,
 ) {
-     operator fun invoke(imageUrl: String): Flow<Boolean> {
+    operator fun invoke(imageUrl: String): Flow<Boolean> {
         return productDetailRepository.isExists(imageUrl)
     }
 }

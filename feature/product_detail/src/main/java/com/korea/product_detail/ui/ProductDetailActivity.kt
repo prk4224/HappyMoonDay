@@ -1,11 +1,7 @@
 package com.korea.product_detail.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.korea.common.constants.IntentKeyConstants.ARTWORK
 import com.korea.common.utils.IntentUtils.parcelable
 import com.korea.product_detail.databinding.ActivityProductDetailBinding
@@ -13,7 +9,6 @@ import com.korea.product_detail.di.ProductDetailComposeInjector
 import com.korea.product_detail.model.ProductDetailArtwork
 import com.korea.search.domain.model.SearchArtwork
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 internal class ProductDetailActivity : AppCompatActivity() {

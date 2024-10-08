@@ -6,5 +6,5 @@ data class SearchParams(
     val productClassName: String? = null,
     val manufactureYear: String? = null,
     val productNameKorean: String? = null,
-    val productNameEnglish: String? = null
+    val productNameEnglish: String? = null,
 )

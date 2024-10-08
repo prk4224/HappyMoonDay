@@ -5,7 +5,7 @@ import retrofit2.Response
 internal object ApiUtils {
     suspend fun <T, R> safeApiCall(
         apiCall: suspend () -> Response<T>,
-        convert: (T) -> R
+        convert: (T) -> R,
     ): Result<R> {
         return try {
             val response = apiCall()

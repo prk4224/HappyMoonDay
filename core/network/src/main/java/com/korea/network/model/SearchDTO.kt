@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchDTO(
     @SerializedName("SemaPsgudInfoKorInfo")
-    val semaPsgudInfoKorInfo : SemaPsgudInfoKorInfo?,
+    val semaPsgudInfoKorInfo: SemaPsgudInfoKorInfo?,
 ) {
     data class SemaPsgudInfoKorInfo(
         @SerializedName("list_total_count")

@@ -12,7 +12,8 @@ internal class SearchViewHolder(
 
     fun bind(searchArtwork: SearchArtwork) {
         binding.titleTv.text = searchArtwork.title
-        binding.writerManufactureTv.text = "${searchArtwork.writer} (${searchArtwork.manufactureYear})"
+        binding.writerManufactureTv.text =
+            "${searchArtwork.writer} (${searchArtwork.manufactureYear})"
         binding.classNameTv.text = searchArtwork.productClassName
         binding.root.setOnClickListener {
             onClick(searchArtwork)

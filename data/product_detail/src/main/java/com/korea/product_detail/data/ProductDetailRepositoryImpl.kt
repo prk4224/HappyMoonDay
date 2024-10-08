@@ -4,12 +4,11 @@ import com.korea.database.entity.ArtworkEntity
 import com.korea.product_detail.domain.ProductDetailRepository
 import com.korea.product_detail.model.ProductDetailArtwork
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class ProductDetailRepositoryImpl @Inject constructor(
-    private val productDetailDataSource: ProductDetailDataSource
-): ProductDetailRepository {
+    private val productDetailDataSource: ProductDetailDataSource,
+) : ProductDetailRepository {
 
     override suspend fun insert(info: ProductDetailArtwork) {
         productDetailDataSource.insert(info.convertToEntity())

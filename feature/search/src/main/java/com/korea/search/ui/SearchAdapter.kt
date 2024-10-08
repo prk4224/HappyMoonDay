@@ -10,7 +10,7 @@ import com.korea.search.domain.model.SearchArtwork
 
 internal class SearchAdapter(
     private val onClick: (SearchArtwork) -> Unit,
-): ListAdapter<SearchArtwork, SearchViewHolder>(searchDiffUtil) {
+) : ListAdapter<SearchArtwork, SearchViewHolder>(searchDiffUtil) {
 
     companion object {
         private val searchDiffUtil = object : DiffUtil.ItemCallback<SearchArtwork>() {

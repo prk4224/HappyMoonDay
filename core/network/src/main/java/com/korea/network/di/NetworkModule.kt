@@ -33,7 +33,7 @@ internal object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofitClient(
-        okHttpClient: OkHttpClient
+        okHttpClient: OkHttpClient,
     ): Retrofit {
         return Retrofit
             .Builder()
