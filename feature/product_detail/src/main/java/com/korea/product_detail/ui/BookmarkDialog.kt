@@ -34,8 +34,7 @@ fun BookmarkDialog(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0x80000000))
-            .clickable { dismiss() },
+            .background(Color(0x80000000)),
         contentAlignment = Alignment.Center
     ) {
 
