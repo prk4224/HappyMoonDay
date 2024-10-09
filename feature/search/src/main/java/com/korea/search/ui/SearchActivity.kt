@@ -22,6 +22,7 @@ import com.korea.search.dialog.model.BottomSheetItem
 import com.korea.search.domain.model.SearchArtwork
 import com.korea.search.state.SearchUiState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -64,6 +65,7 @@ internal class SearchActivity : AppCompatActivity() {
                 launch {
                     viewModel.selectedManufactureYear.collect { manufactureYear ->
                         binding.filterManufactureYearTv.text = manufactureYear
+                        delay(100)
                         binding.artworksRv.scrollToPosition(0)
                     }
                 }
@@ -71,6 +73,7 @@ internal class SearchActivity : AppCompatActivity() {
                 launch {
                     viewModel.selectedProductClassNames.collect { productClassNames ->
                         binding.filterProductClassNameTv.text = makeFilterTitle(productClassNames)
+                        delay(100)
                         binding.artworksRv.scrollToPosition(0)
                     }
                 }
