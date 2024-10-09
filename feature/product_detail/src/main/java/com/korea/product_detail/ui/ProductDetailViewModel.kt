@@ -1,4 +1,4 @@
-package com.korea.product_detail.ui.viewmodel
+package com.korea.product_detail.ui
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

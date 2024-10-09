@@ -16,7 +16,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.korea.product_detail.model.ProductDetailArtwork
-import com.korea.product_detail.ui.viewmodel.ProductDetailViewModel
+import com.korea.product_detail.ui.dialog.BookmarkDialog
 
 @Composable
 internal fun ProductDetailScreen(

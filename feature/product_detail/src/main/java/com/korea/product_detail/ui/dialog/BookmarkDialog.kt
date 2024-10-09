@@ -1,4 +1,4 @@
-package com.korea.product_detail.ui
+package com.korea.product_detail.ui.dialog
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
