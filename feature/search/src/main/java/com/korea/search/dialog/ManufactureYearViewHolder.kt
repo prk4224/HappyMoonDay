@@ -10,11 +10,11 @@ internal class ManufactureYearViewHolder(
     private val dismissDialog: () -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(bottomSheetItem: BottomSheetItem) {
-        binding.manufactureYearSortTv.text = bottomSheetItem.title
-        binding.manufactureYearSortTv.isEnabled = bottomSheetItem.isSelected
-        binding.root.setOnClickListener {
-            onClick(bottomSheetItem)
+    fun bind(manufactureYear: BottomSheetItem.ManufactureYear) = with(binding) {
+        manufactureYearSortTv.text = manufactureYear.title
+        manufactureYearSortTv.isEnabled = manufactureYear.isSelected
+        root.setOnClickListener {
+            onClick(manufactureYear)
             dismissDialog()
         }
     }

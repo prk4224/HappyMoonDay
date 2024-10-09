@@ -27,9 +27,16 @@ internal class SearchViewModel @Inject constructor(
     private val _selectedManufactureYear = MutableStateFlow(SORT_BY_YEAR_ASC)
     val selectedManufactureYear = _selectedManufactureYear.asStateFlow()
 
+    private val _selectedProductClassNames = MutableStateFlow<List<String>>(listOf())
+    val selectedProductClassNames = _selectedProductClassNames.asStateFlow()
+
     private var totalCount = 0
     private var searchKeyword = ""
     private var startIndex = 0
+    private var originArtworks: List<SearchArtwork> = listOf()
+    private val isFilterDisabled
+        get() = selectedProductClassNames.value.isEmpty() ||
+                selectedProductClassNames.value.contains(PRODUCT_CLASS_NAME_All)
 
     fun fetch(keyword: String) {
         viewModelScope.launch {
@@ -51,9 +58,10 @@ internal class SearchViewModel @Inject constructor(
                     if (item.totalCount == 0) {
                         _uiState.value = SearchUiState.Empty
                     } else {
-                        updateArtworks(item.searchArtworks)
-                        startIndex += PAGE_SIZE + 1
-                        totalCount = item.totalCount
+                        handleSearch(
+                            searchArtworks = item.searchArtworks,
+                            total = totalCount
+                        )
                         _uiState.value = SearchUiState.Success
                     }
                 }
@@ -78,46 +86,96 @@ internal class SearchViewModel @Inject constructor(
 
             fetchSearchUseCase(params)
                 .onSuccess { item ->
-                    val newArtwork = artworks.value + item.searchArtworks
-                    _artworks.value = newArtwork
-                    startIndex += PAGE_SIZE + 1
+                    handleSearch(
+                        searchArtworks = originArtworks + item.searchArtworks,
+                        total = totalCount
+                    )
                 }
         }
     }
 
-    private fun updateArtworks(searchArtworks: List<SearchArtwork>) {
+    private fun handleSearch(
+        searchArtworks: List<SearchArtwork>,
+        total: Int? = null,
+    ) {
+        originArtworks = searchArtworks
+        startIndex += PAGE_SIZE + 1
+        updateArtworks()
+        totalCount = total ?: return
+    }
+
+    private fun updateArtworks() {
         if (selectedManufactureYear.value == SORT_BY_YEAR_ASC) {
-            _artworks.value = searchArtworks.sortedBy {
-                it.manufactureYear
+            val artworkSort = originArtworks.sortedBy { artwork ->
+                artwork.manufactureYear
             }
+            updateArtworksFilter(artworkSort)
         } else {
-            _artworks.value = searchArtworks.sortedByDescending {
-                it.manufactureYear
+            val artworkSort = originArtworks.sortedByDescending { artwork ->
+                artwork.manufactureYear
+            }
+            updateArtworksFilter(artworkSort)
+        }
+    }
+
+    private fun updateArtworksFilter(artworks: List<SearchArtwork>) {
+        if (isFilterDisabled) {
+            _artworks.value = artworks
+        } else {
+            _artworks.value = artworks.filter { artwork ->
+                selectedProductClassNames.value.contains(artwork.productClassName)
             }
         }
     }
 
-    fun makeManufactureYearList(): List<BottomSheetItem> {
+    fun makeManufactureYears(): List<BottomSheetItem> {
         return listOf(
-            BottomSheetItem(
+            BottomSheetItem.ManufactureYear(
                 title = SORT_BY_YEAR_ASC,
                 isSelected = selectedManufactureYear.value == SORT_BY_YEAR_ASC
             ),
-            BottomSheetItem(
+            BottomSheetItem.ManufactureYear(
                 title = SORT_BY_YEAR_DESC,
                 isSelected = selectedManufactureYear.value == SORT_BY_YEAR_DESC
             )
         )
     }
 
-    fun updateManufactureYearSort(bottomSheetItem: BottomSheetItem) {
-        fetch(searchKeyword)
-        _selectedManufactureYear.value = bottomSheetItem.title
+    fun makeProductClassName(): List<BottomSheetItem> {
+        return List(PRODUCT_CLASS_NAMES.size) { index ->
+            BottomSheetItem.ProductClassName(
+                title = PRODUCT_CLASS_NAMES[index],
+                isSelected = selectedProductClassNames.value.contains(PRODUCT_CLASS_NAMES[index])
+            )
+        }
     }
+
+    fun updateManufactureYearSort(bottomSheetItem: BottomSheetItem) {
+        _selectedManufactureYear.value = bottomSheetItem.title
+        updateArtworks()
+    }
+
+    fun updateProductClassName(items: List<BottomSheetItem>) {
+        _selectedProductClassNames.value = items.map { item -> item.title }
+        updateArtworks()
+    }
+
 
     companion object {
         const val PAGE_SIZE = 100
         const val SORT_BY_YEAR_ASC = "제작년도 오름차순"
         const val SORT_BY_YEAR_DESC = "제작년도 내림차순"
+        const val PRODUCT_CLASS_NAME_All = "전체"
+        val PRODUCT_CLASS_NAMES = listOf(
+            "전체",
+            "회화",
+            "한국화",
+            "드로잉&판화",
+            "조각",
+            "뉴미디어",
+            "사진",
+            "설치",
+            "디자인",
+        )
     }
 }

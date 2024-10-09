@@ -18,6 +18,7 @@ import com.korea.common.model.Artwork
 import com.korea.search.R
 import com.korea.search.databinding.ActivitySearchBinding
 import com.korea.search.dialog.BottomSheetDialog
+import com.korea.search.dialog.model.BottomSheetItem
 import com.korea.search.domain.model.SearchArtwork
 import com.korea.search.state.SearchUiState
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,6 +67,13 @@ internal class SearchActivity : AppCompatActivity() {
                         binding.artworksRv.scrollToPosition(0)
                     }
                 }
+
+                launch {
+                    viewModel.selectedProductClassNames.collect { productClassNames ->
+                        binding.filterProductClassNameTv.text = makeFilterTitle(productClassNames)
+                        binding.artworksRv.scrollToPosition(0)
+                    }
+                }
             }
         }
     }
@@ -95,7 +103,7 @@ internal class SearchActivity : AppCompatActivity() {
 
             is SearchUiState.Error -> {
                 progressBar.isVisible = false
-                emptyTitleTv.text = getString(R.string.error)
+                emptyTitleTv.text = getString(R.string.generate_error)
                 emptyTitleTv.isVisible = true
             }
         }
@@ -137,7 +145,21 @@ internal class SearchActivity : AppCompatActivity() {
         }
 
         filterManufactureYearTv.setOnClickListener {
-            showBottomSheetDialog()
+            showBottomSheetDialog(
+                items = viewModel.makeManufactureYears(),
+                onClickSort = { item ->
+                    viewModel.updateManufactureYearSort(item)
+                }
+            )
+        }
+
+        filterProductClassNameTv.setOnClickListener {
+            showBottomSheetDialog(
+                items = viewModel.makeProductClassName(),
+                onClickFilter = { items ->
+                    viewModel.updateProductClassName(items)
+                }
+            )
         }
     }
 
@@ -146,6 +168,14 @@ internal class SearchActivity : AppCompatActivity() {
         if (keyword.isEmpty()) return
         viewModel.fetch(keyword.toString())
         hideKeyboard()
+    }
+
+    private fun makeFilterTitle(productClassNames: List<String>): String {
+        return when (productClassNames.size) {
+            0 -> getString(R.string.product_class_name)
+            1 -> productClassNames.first()
+            else -> "${productClassNames.first()} 외 ${productClassNames.size - 1}"
+        }
     }
 
     private fun moveProductDetail(searchArtwork: SearchArtwork) {
@@ -161,12 +191,15 @@ internal class SearchActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun showBottomSheetDialog() {
+    private fun showBottomSheetDialog(
+        items: List<BottomSheetItem>,
+        onClickSort: (BottomSheetItem) -> Unit = { },
+        onClickFilter: (List<BottomSheetItem>) -> Unit = { },
+    ) {
         BottomSheetDialog(
-            items = viewModel.makeManufactureYearList(),
-            onClick = { manufactureYearSort ->
-                viewModel.updateManufactureYearSort(manufactureYearSort)
-            }
+            items = items,
+            onClickSort = onClickSort,
+            onClickFilter = onClickFilter
         ).show(supportFragmentManager, "")
     }
 

@@ -3,5 +3,7 @@
     <string name="search_hint">검색어를 입력해주세요</string>
     <string name="empty_title">\'%s\' 에 대한 검색 결과가 없어요</string>
     <string name="empty_sub_title">다른 검색어를 입력하거나\n 철자와 띄어쓰기를 확인해보세요.</string>
-    <string name="error">에러가 발생했습니다</string>
+    <string name="generate_error">에러가 발생했습니다</string>
+    <string name="confirm">확인</string>
+    <string name="product_class_name">부문</string>
 </resources>
