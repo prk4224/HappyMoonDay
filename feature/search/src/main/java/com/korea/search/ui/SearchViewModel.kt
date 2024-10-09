@@ -36,7 +36,7 @@ internal class SearchViewModel @Inject constructor(
     private var originArtworks: List<SearchArtwork> = listOf()
     private val isFilterDisabled
         get() = selectedProductClassNames.value.isEmpty() ||
-                selectedProductClassNames.value.contains(PRODUCT_CLASS_NAME_All)
+                selectedProductClassNames.value.contains(PRODUCT_CLASS_NAME_ALL)
 
     fun fetch(keyword: String) {
         viewModelScope.launch {
@@ -47,8 +47,8 @@ internal class SearchViewModel @Inject constructor(
             val params = SearchParams(
                 startIndex = startIndex,
                 endIndex = startIndex + PAGE_SIZE,
-                productClassName = "",
-                manufactureYear = null,
+                productClassName = " ",
+                manufactureYear = " ",
                 productNameKorean = keyword,
                 productNameEnglish = null
             )
@@ -78,8 +78,8 @@ internal class SearchViewModel @Inject constructor(
             val params = SearchParams(
                 startIndex = startIndex,
                 endIndex = startIndex + PAGE_SIZE,
-                productClassName = "",
-                manufactureYear = null,
+                productClassName = " ",
+                manufactureYear = " ",
                 productNameKorean = searchKeyword,
                 productNameEnglish = null
             )
@@ -165,11 +165,12 @@ internal class SearchViewModel @Inject constructor(
         const val PAGE_SIZE = 100
         const val SORT_BY_YEAR_ASC = "제작년도 오름차순"
         const val SORT_BY_YEAR_DESC = "제작년도 내림차순"
-        const val PRODUCT_CLASS_NAME_All = "전체"
+        const val PRODUCT_CLASS_NAME_ALL = "전체"
         val PRODUCT_CLASS_NAMES = listOf(
             "전체",
             "회화",
             "한국화",
+
             "드로잉&판화",
             "조각",
             "뉴미디어",
