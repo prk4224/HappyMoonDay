@@ -20,11 +20,11 @@
         android:id="@+id/confirm_button_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_margin="8dp"
+        android:background="@drawable/bg_stroke_1dp_radius_8dp"
+        android:gravity="center"
         android:paddingVertical="8dp"
         android:text="@string/confirm"
-        android:background="@drawable/bg_stroke_1dp_radius_8dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
