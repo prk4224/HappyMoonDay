@@ -17,10 +17,10 @@ internal class SearchDataSourceImpl @Inject constructor(
     private fun makePath(
         params: SearchParams,
     ): String {
-        val className = params.productClassName?.let { "/$it" } ?: ""
-        val year = params.manufactureYear?.let { "/$it" } ?: ""
-        val nameKorean = params.productNameKorean?.let { "/$it" } ?: ""
-        val nameEnglish = params.productNameEnglish?.let { "/$it" } ?: ""
+        val className = params.productClassName?.let { "/$it" } ?: "/ "
+        val year = params.manufactureYear?.let { "/$it" } ?: "/ "
+        val nameKorean = params.productNameKorean?.let { "/$it" } ?: "/ "
+        val nameEnglish = params.productNameEnglish?.let { "/$it" } ?: "/ "
         return "${params.startIndex}/${params.endIndex}${className}${year}${nameKorean}${nameEnglish}"
     }
 }

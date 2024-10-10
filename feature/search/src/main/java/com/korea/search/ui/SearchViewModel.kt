@@ -47,8 +47,8 @@ internal class SearchViewModel @Inject constructor(
             val params = SearchParams(
                 startIndex = startIndex,
                 endIndex = startIndex + PAGE_SIZE,
-                productClassName = " ",
-                manufactureYear = " ",
+                productClassName = null,
+                manufactureYear = null,
                 productNameKorean = keyword,
                 productNameEnglish = null
             )
@@ -80,8 +80,8 @@ internal class SearchViewModel @Inject constructor(
             val params = SearchParams(
                 startIndex = startIndex,
                 endIndex = startIndex + PAGE_SIZE,
-                productClassName = " ",
-                manufactureYear = " ",
+                productClassName = null,
+                manufactureYear = null,
                 productNameKorean = searchKeyword,
                 productNameEnglish = null
             )
