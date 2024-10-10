@@ -56,6 +56,7 @@ internal class SearchViewModel @Inject constructor(
             fetchSearchUseCase(params)
                 .onSuccess { item ->
                     if (item.totalCount == 0) {
+                        _artworks.value = listOf()
                         _uiState.value = SearchUiState.Empty
                     } else {
                         handleSearch(
@@ -66,6 +67,7 @@ internal class SearchViewModel @Inject constructor(
                     }
                 }
                 .onFailure {
+                    _artworks.value = listOf()
                     _uiState.value = SearchUiState.Error
                 }
         }
