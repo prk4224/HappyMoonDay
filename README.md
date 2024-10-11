@@ -14,7 +14,7 @@
 - Hlit
 - Room
 - Glide
-- Coil-Compe
+- Coil-Compose
 
 ## 구현 모습
 <table>
